@@ -5,7 +5,11 @@ var cheerio = require('cheerio');
 var moment = require('moment');
 var config = require('./config');
 var redis = require("redis");
-var client = redis.createClient();
+var rtg = require('url').parse(config.redis.url);
+var client = redis.createClient(rtg.port, rtg.hostname);
+if(rtg.hostname !== '127.0.0.1') {
+  redis.auth(rtg.auth.split(":")[1]);
+}
 var REDDIT_URL = 'https://www.reddit.com/r/anime/comments/2bxtwn/crunchyroll_guestpass_thread.json?showmore=true&sort=new&limit=10&depth=1';
 var REDIS_KEY = 'crunchCodes';
 var GUEST_PASS_REGEX = new RegExp(/([A-Z,0-9]{11})/g);
