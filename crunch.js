@@ -8,7 +8,7 @@ var redis = require("redis");
 var rtg = require('url').parse(config.redis.url);
 var client = redis.createClient(rtg.port, rtg.hostname);
 if(rtg.hostname !== '127.0.0.1') {
-  redis.auth(rtg.auth.split(":")[1]);
+  client.auth(rtg.auth.split(":")[1]);
 }
 var REDDIT_URL = 'https://www.reddit.com/r/anime/comments/2bxtwn/crunchyroll_guestpass_thread.json?showmore=true&sort=new&limit=10&depth=1';
 var REDIS_KEY = 'crunchCodes';
