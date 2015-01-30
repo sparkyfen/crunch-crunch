@@ -3,7 +3,7 @@
 module.exports = {
   redis: {
     url: process.env.REDISTOGO_URL || 'http://127.0.0.1:6379'
-  }
+  },
   gmail: {
     username: process.env.CRUNCH_CRUNCH_GMAIL_USERNAME || '',
     password: process.env.CRUNCH_CRUNCH_GMAIL_PASSWORD || '',
